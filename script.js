@@ -45,6 +45,14 @@ box.addEventListener("click", () => {
 // Start game
 // moveBox();
 
+function endGame(){
+  clearInterval(timer);
+  gameRunning = false;
+  box.style.display = "none";
+  startBtn.style.display = "inline-block";
+  alert("Game over! Your score: " + score);
+}
+
 function startGame() {
     if (gameRunning) return;
     gameRunning = true;
@@ -65,12 +73,6 @@ function startGame() {
     }, 1000);
 }
 
-function endGame(){
-  clearInterval(timer);
-  gameRunning = false;
-  box.style.display = "none";
-  startBtn.style.display = "inline-block";
-  alert("Game over! Your score: " + score);
-}
+
 
 startBtn.addEventListener("click",startGame);
