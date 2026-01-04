@@ -73,6 +73,4 @@ function startGame() {
     }, 1000);
 }
 
-
-
-startBtn.addEventListener("click",startGame);
+startBtn.addEventListener("click", startGame);
