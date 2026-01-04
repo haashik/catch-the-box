@@ -3,11 +3,14 @@ const gameArea = document.getElementById("game-area");
 const scoreDisplay = document.getElementById("score");
 const timeDisplay = document.getElementById("time");
 const startBtn = document.getElementById("start-btn");
+const highScoreDisplay = document.getElementById("high-score")
 
 let score = 0;
 let timeLeft = 30;
 let timer = null;
 let gameRunning = false;
+let highScore = Number(localStorage.getItem("highScore")) || 0;
+highScoreDisplay.textContent = highScore;
 
 // Move box randomly
 function moveBox() {
@@ -29,27 +32,17 @@ box.addEventListener("click", () => {
   moveBox();
 });
 
-// Timer
-//const timer = setInterval(() => {
-//  timeLeft--;
-//  timeDisplay.textContent = timeLeft;
-//
-//  if (timeLeft === 0) {
-//    clearInterval(timer);
-//    box.style.display = "none";
-//    alert("Game Over! Your score: " + score);
-//  }
-//}, 1000);
-
-
-// Start game
-// moveBox();
-
 function endGame(){
   clearInterval(timer);
   gameRunning = false;
   box.style.display = "none";
   startBtn.style.display = "inline-block";
+
+  if (score > highScore){
+    highScore = score;
+    highScoreDisplay.textContent = highScore;
+    localStorage.setItem("highScore", highScore); 
+  };
   alert("Game over! Your score: " + score);
 }
 
